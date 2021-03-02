@@ -42,6 +42,10 @@
         }
       ]
     },
+    "body": {
+      "type": "PATTERN",
+      "value": "(.|[\\r\\n])*"
+    },
     "sep": {
       "type": "STRING",
       "value": "---"
@@ -95,10 +99,6 @@
     "path": {
       "type": "PATTERN",
       "value": "\\/?[^\\/\\s]+(?:\\/[^\\/\\s]+)*"
-    },
-    "body": {
-      "type": "PATTERN",
-      "value": "(.|[\\r\\n])*"
     }
   },
   "extras": [

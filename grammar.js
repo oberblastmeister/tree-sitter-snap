@@ -13,6 +13,8 @@ module.exports = grammar({
             $.sep,
         ),
 
+        body: $ => /(.|[\r\n])*/,
+
         sep: $ => '---',
 
         metadata: $ => seq(
@@ -31,7 +33,5 @@ module.exports = grammar({
         string: $ => /\"[^\"]*\"/,
 
         path: $ => /\/?[^\/\s]+(?:\/[^\/\s]+)*/,
-
-        body: $ => /(.|[\r\n])*/
     }
 })
