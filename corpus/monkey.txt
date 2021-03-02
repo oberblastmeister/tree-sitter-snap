@@ -46,7 +46,7 @@ expression: "Lexer::new(&input).lex_until_eof()"
   header: (header
     (metadata
       name: (identifier)
-      value: (path))
+      value: (string))
     (metadata
       name: (identifier)
       value: (string)))

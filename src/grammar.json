@@ -81,16 +81,21 @@
         {
           "type": "SYMBOL",
           "name": "string"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "path"
         }
       ]
     },
     "string": {
-      "type": "PATTERN",
-      "value": "\\\"[^\\\"]*\\\""
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "\\\"[^\\\"]*\\\""
+        },
+        {
+          "type": "PATTERN",
+          "value": ".+"
+        }
+      ]
     },
     "path": {
       "type": "PATTERN",

@@ -25,10 +25,12 @@ module.exports = grammar({
 
         _value: $ => choice(
             $.string,
-            $.path,
         ),
 
-        string: $ => /\"[^\"]*\"/,
+        string: $ => choice(
+            /\"[^\"]*\"/,
+            /.+/,
+        ),
 
         path: $ => /\/?[^\/\s]+(?:\/[^\/\s]+)*/,
     }

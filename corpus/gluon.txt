@@ -18,7 +18,7 @@ error: Could not find module 'undefined'. Searched `.`.
   header: (header
     (metadata
       name: (identifier)
-      value: (path))
+      value: (string))
     (metadata
       name: (identifier)
       value: (string)))

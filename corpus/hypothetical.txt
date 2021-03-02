@@ -48,13 +48,13 @@ key3: "adslkfj"
   header: (header
     (metadata
       name: (identifier)
-      value: (path))
+      value: (string))
     (metadata
       name: (identifier)
       value: (string))
     (metadata
       name: (identifier)
-      value: (path))
+      value: (string))
     (metadata
       name: (identifier)
       value: (string))

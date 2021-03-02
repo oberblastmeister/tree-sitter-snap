@@ -33,10 +33,6 @@
         "required": true,
         "types": [
           {
-            "type": "path",
-            "named": true
-          },
-          {
             "type": "string",
             "named": true
           }
@@ -71,6 +67,11 @@
     }
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "---",
     "named": false
   },
@@ -84,14 +85,6 @@
   },
   {
     "type": "identifier",
-    "named": true
-  },
-  {
-    "type": "path",
-    "named": true
-  },
-  {
-    "type": "string",
     "named": true
   }
 ]
