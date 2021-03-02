@@ -1,0 +1,66 @@
+==================
+Hypothetical
+==================
+
+---
+source: crates/monkey-lang/src/parsing/lexer.rs
+expression: "Lexer::new(&input).lex_until_eof()"
+another_key: hello/another/another
+key2: "ad;fkjas"
+key3: "adslkfj"
+---
+[
+    Ok(
+        Token {
+            span: Span {
+                start: 26,
+                end: 28,
+            },
+            kind: ShiftRight,
+            text: ">>",
+        },
+    ),
+    Ok(
+        Token {
+            span: Span {
+                start: 29,
+                end: 30,
+            },
+            kind: Eq,
+            text: "=",
+        },
+    ),
+    Ok(
+        Token {
+            span: Span {
+                start: 31,
+                end: 32,
+            },
+            kind: Semicolon,
+            text: ";",
+        },
+    ),
+]
+
+---------------------------
+
+(source_file
+  header: (header
+    (sep)
+    (metadata
+      name: (identifier)
+      value: (path))
+    (metadata
+      name: (identifier)
+      value: (string))
+    (metadata
+      name: (identifier)
+      value: (path))
+    (metadata
+      name: (identifier)
+      value: (string))
+    (metadata
+      name: (identifier)
+      value: (string))
+    (sep))
+  body: (body))
