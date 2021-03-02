@@ -8,14 +8,12 @@ module.exports = grammar({
         ),
 
         header: $ => seq(
-            $.sep,
+            '---',
             repeat($.metadata),
-            $.sep,
+            '---',
         ),
 
         body: $ => /(.|[\r\n])*/,
-
-        sep: $ => '---',
 
         metadata: $ => seq(
             field('name', $.identifier),

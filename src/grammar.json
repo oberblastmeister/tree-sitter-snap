@@ -26,8 +26,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "sep"
+          "type": "STRING",
+          "value": "---"
         },
         {
           "type": "REPEAT",
@@ -37,18 +37,14 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "sep"
+          "type": "STRING",
+          "value": "---"
         }
       ]
     },
     "body": {
       "type": "PATTERN",
       "value": "(.|[\\r\\n])*"
-    },
-    "sep": {
-      "type": "STRING",
-      "value": "---"
     },
     "metadata": {
       "type": "SEQ",

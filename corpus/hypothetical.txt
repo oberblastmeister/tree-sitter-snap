@@ -46,7 +46,6 @@ key3: "adslkfj"
 
 (source_file
   header: (header
-    (sep)
     (metadata
       name: (identifier)
       value: (path))
@@ -61,6 +60,5 @@ key3: "adslkfj"
       value: (string))
     (metadata
       name: (identifier)
-      value: (string))
-    (sep))
+      value: (string)))
   body: (body))

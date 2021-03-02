@@ -44,12 +44,10 @@ expression: "Lexer::new(&input).lex_until_eof()"
 
 (source_file
   header: (header
-    (sep)
     (metadata
       name: (identifier)
       value: (path))
     (metadata
       name: (identifier)
-      value: (string))
-    (sep))
+      value: (string)))
   body: (body))

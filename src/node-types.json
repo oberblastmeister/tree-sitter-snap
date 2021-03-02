@@ -5,14 +5,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "metadata",
-          "named": true
-        },
-        {
-          "type": "sep",
           "named": true
         }
       ]
@@ -75,6 +71,10 @@
     }
   },
   {
+    "type": "---",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -88,10 +88,6 @@
   },
   {
     "type": "path",
-    "named": true
-  },
-  {
-    "type": "sep",
     "named": true
   },
   {
