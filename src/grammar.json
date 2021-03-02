@@ -93,7 +93,7 @@
         },
         {
           "type": "PATTERN",
-          "value": ".+"
+          "value": "[^\\s]+"
         }
       ]
     },

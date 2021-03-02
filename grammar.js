@@ -29,7 +29,7 @@ module.exports = grammar({
 
         string: $ => choice(
             /\"[^\"]*\"/,
-            /.+/,
+            /[^\s]+/,
         ),
 
         path: $ => /\/?[^\/\s]+(?:\/[^\/\s]+)*/,

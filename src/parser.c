@@ -160,7 +160,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
   switch (state) {
     case 0:
       if (eof) ADVANCE(5);
-      if (lookahead == '"') ADVANCE(2);
+      if (lookahead == '"') ADVANCE(1);
       if (lookahead == '-') ADVANCE(4);
       if (lookahead == ':') ADVANCE(9);
       if (lookahead == '\t' ||
@@ -172,16 +172,16 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           ('a' <= lookahead && lookahead <= 'z')) ADVANCE(10);
       END_STATE();
     case 1:
-      if (lookahead == '\n') SKIP(1)
-      if (lookahead == '"') ADVANCE(13);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
-          lookahead == ' ') ADVANCE(14);
-      if (lookahead != 0) ADVANCE(15);
+      if (lookahead == '"') ADVANCE(11);
+      if (lookahead != 0) ADVANCE(1);
       END_STATE();
     case 2:
-      if (lookahead == '"') ADVANCE(11);
-      if (lookahead != 0) ADVANCE(2);
+      if (lookahead == '"') ADVANCE(13);
+      if (lookahead == '\t' ||
+          lookahead == '\n' ||
+          lookahead == '\r' ||
+          lookahead == ' ') SKIP(2)
+      if (lookahead != 0) ADVANCE(14);
       END_STATE();
     case 3:
       if (lookahead == '-') ADVANCE(6);
@@ -222,27 +222,27 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
     case 12:
       ACCEPT_TOKEN(aux_sym_string_token1);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(15);
+          lookahead != '\t' &&
+          lookahead != '\n' &&
+          lookahead != '\r' &&
+          lookahead != ' ') ADVANCE(14);
       END_STATE();
     case 13:
       ACCEPT_TOKEN(aux_sym_string_token2);
-      if (lookahead == '\n') ADVANCE(2);
       if (lookahead == '"') ADVANCE(12);
+      if (lookahead == '\t' ||
+          lookahead == '\n' ||
+          lookahead == '\r' ||
+          lookahead == ' ') ADVANCE(1);
       if (lookahead != 0) ADVANCE(13);
       END_STATE();
     case 14:
       ACCEPT_TOKEN(aux_sym_string_token2);
-      if (lookahead == '"') ADVANCE(13);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
-          lookahead == ' ') ADVANCE(14);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(15);
-      END_STATE();
-    case 15:
-      ACCEPT_TOKEN(aux_sym_string_token2);
-      if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(15);
+          lookahead != '\t' &&
+          lookahead != '\n' &&
+          lookahead != '\r' &&
+          lookahead != ' ') ADVANCE(14);
       END_STATE();
     default:
       return false;
@@ -254,7 +254,7 @@ static TSLexMode ts_lex_modes[STATE_COUNT] = {
   [1] = {.lex_state = 0},
   [2] = {.lex_state = 0},
   [3] = {.lex_state = 0},
-  [4] = {.lex_state = 1},
+  [4] = {.lex_state = 2},
   [5] = {.lex_state = 0},
   [6] = {.lex_state = 0},
   [7] = {.lex_state = 0},
