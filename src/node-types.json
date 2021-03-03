@@ -1,10 +1,5 @@
 [
   {
-    "type": "header",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -24,24 +19,11 @@
     }
   },
   {
-    "type": "string",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "---",
-    "named": false
-  },
-  {
-    "type": ":",
-    "named": false
-  },
-  {
     "type": "body",
     "named": true
   },
   {
-    "type": "identifier",
+    "type": "header",
     "named": true
   }
 ]

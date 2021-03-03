@@ -6,48 +6,33 @@
 #endif
 
 #define LANGUAGE_VERSION 12
-#define STATE_COUNT 7
+#define STATE_COUNT 5
 #define LARGE_STATE_COUNT 2
-#define SYMBOL_COUNT 9
+#define SYMBOL_COUNT 4
 #define ALIAS_COUNT 0
-#define TOKEN_COUNT 7
+#define TOKEN_COUNT 3
 #define EXTERNAL_TOKEN_COUNT 0
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 2
 
 enum {
-  anon_sym_DASH_DASH_DASH = 1,
-  aux_sym_header_token1 = 2,
-  sym_body = 3,
-  anon_sym_COLON = 4,
-  sym_identifier = 5,
-  aux_sym_string_token1 = 6,
-  sym_source_file = 7,
-  sym_header = 8,
+  sym_header = 1,
+  sym_body = 2,
+  sym_source_file = 3,
 };
 
 static const char *ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
-  [anon_sym_DASH_DASH_DASH] = "---",
-  [aux_sym_header_token1] = "header_token1",
-  [sym_body] = "body",
-  [anon_sym_COLON] = ":",
-  [sym_identifier] = "identifier",
-  [aux_sym_string_token1] = "string_token1",
-  [sym_source_file] = "source_file",
   [sym_header] = "header",
+  [sym_body] = "body",
+  [sym_source_file] = "source_file",
 };
 
 static TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
-  [anon_sym_DASH_DASH_DASH] = anon_sym_DASH_DASH_DASH,
-  [aux_sym_header_token1] = aux_sym_header_token1,
-  [sym_body] = sym_body,
-  [anon_sym_COLON] = anon_sym_COLON,
-  [sym_identifier] = sym_identifier,
-  [aux_sym_string_token1] = aux_sym_string_token1,
-  [sym_source_file] = sym_source_file,
   [sym_header] = sym_header,
+  [sym_body] = sym_body,
+  [sym_source_file] = sym_source_file,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -55,35 +40,15 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = true,
   },
-  [anon_sym_DASH_DASH_DASH] = {
+  [sym_header] = {
     .visible = true,
-    .named = false,
-  },
-  [aux_sym_header_token1] = {
-    .visible = false,
-    .named = false,
+    .named = true,
   },
   [sym_body] = {
     .visible = true,
     .named = true,
   },
-  [anon_sym_COLON] = {
-    .visible = true,
-    .named = false,
-  },
-  [sym_identifier] = {
-    .visible = true,
-    .named = true,
-  },
-  [aux_sym_string_token1] = {
-    .visible = false,
-    .named = false,
-  },
   [sym_source_file] = {
-    .visible = true,
-    .named = true,
-  },
-  [sym_header] = {
     .visible = true,
     .named = true,
   },
@@ -102,88 +67,57 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
   eof = lexer->eof(lexer);
   switch (state) {
     case 0:
-      if (eof) ADVANCE(4);
-      if (lookahead == '"') ADVANCE(1);
-      if (lookahead == '-') ADVANCE(3);
-      if (lookahead == ':') ADVANCE(13);
+      if (eof) ADVANCE(7);
+      if (lookahead == '-') ADVANCE(2);
       if (lookahead == '\t' ||
           lookahead == '\n' ||
           lookahead == '\r' ||
           lookahead == ' ') SKIP(0)
-      if (('0' <= lookahead && lookahead <= '9') ||
-          lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(14);
       END_STATE();
     case 1:
-      if (lookahead == '"') ADVANCE(15);
-      if (lookahead != 0) ADVANCE(1);
+      if (lookahead == '-') ADVANCE(6);
       END_STATE();
     case 2:
-      if (lookahead == '-') ADVANCE(5);
+      if (lookahead == '-') ADVANCE(1);
       END_STATE();
     case 3:
-      if (lookahead == '-') ADVANCE(2);
+      if (lookahead != 0 &&
+          lookahead != '-') ADVANCE(5);
+      if (lookahead == '-') ADVANCE(8);
       END_STATE();
     case 4:
-      ACCEPT_TOKEN(ts_builtin_sym_end);
+      if (lookahead != 0 &&
+          lookahead != '-') ADVANCE(5);
+      if (lookahead == '-') ADVANCE(3);
       END_STATE();
     case 5:
-      ACCEPT_TOKEN(anon_sym_DASH_DASH_DASH);
+      if (lookahead != 0 &&
+          lookahead != '-') ADVANCE(5);
+      if (lookahead == '-') ADVANCE(4);
       END_STATE();
     case 6:
-      ACCEPT_TOKEN(anon_sym_DASH_DASH_DASH);
-      if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(10);
+      if (lookahead != 0) ADVANCE(5);
       END_STATE();
     case 7:
-      ACCEPT_TOKEN(aux_sym_header_token1);
-      if (lookahead == '-') ADVANCE(9);
-      if (lookahead == '\t' ||
-          lookahead == '\r' ||
-          lookahead == ' ') ADVANCE(7);
-      if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(10);
+      ACCEPT_TOKEN(ts_builtin_sym_end);
       END_STATE();
     case 8:
-      ACCEPT_TOKEN(aux_sym_header_token1);
-      if (lookahead == '-') ADVANCE(6);
+      ACCEPT_TOKEN(sym_header);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(10);
+          lookahead != '-') ADVANCE(5);
+      if (lookahead == '-') ADVANCE(8);
       END_STATE();
     case 9:
-      ACCEPT_TOKEN(aux_sym_header_token1);
-      if (lookahead == '-') ADVANCE(8);
-      if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(10);
-      END_STATE();
-    case 10:
-      ACCEPT_TOKEN(aux_sym_header_token1);
-      if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(10);
-      END_STATE();
-    case 11:
       ACCEPT_TOKEN(sym_body);
       if (lookahead == '\t' ||
           lookahead == '\n' ||
           lookahead == '\r' ||
-          lookahead == ' ') ADVANCE(11);
-      if (lookahead != 0) ADVANCE(12);
+          lookahead == ' ') ADVANCE(9);
+      if (lookahead != 0) ADVANCE(10);
       END_STATE();
-    case 12:
+    case 10:
       ACCEPT_TOKEN(sym_body);
-      if (lookahead != 0) ADVANCE(12);
-      END_STATE();
-    case 13:
-      ACCEPT_TOKEN(anon_sym_COLON);
-      END_STATE();
-    case 14:
-      ACCEPT_TOKEN(sym_identifier);
-      if (('0' <= lookahead && lookahead <= '9') ||
-          lookahead == '_' ||
-          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(14);
-      END_STATE();
-    case 15:
-      ACCEPT_TOKEN(aux_sym_string_token1);
+      if (lookahead != 0) ADVANCE(10);
       END_STATE();
     default:
       return false;
@@ -193,64 +127,47 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
 static TSLexMode ts_lex_modes[STATE_COUNT] = {
   [0] = {.lex_state = 0},
   [1] = {.lex_state = 0},
-  [2] = {.lex_state = 7},
+  [2] = {.lex_state = 9},
   [3] = {.lex_state = 0},
-  [4] = {.lex_state = 11},
-  [5] = {.lex_state = 11},
-  [6] = {.lex_state = 0},
+  [4] = {.lex_state = 0},
 };
 
 static uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
-    [anon_sym_DASH_DASH_DASH] = ACTIONS(1),
-    [anon_sym_COLON] = ACTIONS(1),
-    [sym_identifier] = ACTIONS(1),
-    [aux_sym_string_token1] = ACTIONS(1),
+    [sym_header] = ACTIONS(1),
   },
   [1] = {
     [sym_source_file] = STATE(3),
-    [sym_header] = STATE(4),
-    [anon_sym_DASH_DASH_DASH] = ACTIONS(3),
+    [sym_header] = ACTIONS(3),
   },
 };
 
 static uint16_t ts_small_parse_table[] = {
   [0] = 1,
-    ACTIONS(5), 2,
-      anon_sym_DASH_DASH_DASH,
-      aux_sym_header_token1,
-  [5] = 1,
+    ACTIONS(5), 1,
+      sym_body,
+  [4] = 1,
     ACTIONS(7), 1,
       ts_builtin_sym_end,
-  [9] = 1,
+  [8] = 1,
     ACTIONS(9), 1,
-      sym_body,
-  [13] = 1,
-    ACTIONS(11), 1,
-      sym_body,
-  [17] = 1,
-    ACTIONS(13), 1,
       ts_builtin_sym_end,
 };
 
 static uint32_t ts_small_parse_table_map[] = {
   [SMALL_STATE(2)] = 0,
-  [SMALL_STATE(3)] = 5,
-  [SMALL_STATE(4)] = 9,
-  [SMALL_STATE(5)] = 13,
-  [SMALL_STATE(6)] = 17,
+  [SMALL_STATE(3)] = 4,
+  [SMALL_STATE(4)] = 8,
 };
 
 static TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
-  [5] = {.entry = {.count = 1, .reusable = false}}, SHIFT(5),
+  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(4),
   [7] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(6),
-  [11] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_header, 2),
-  [13] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 2),
+  [9] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 2),
 };
 
 #ifdef __cplusplus
