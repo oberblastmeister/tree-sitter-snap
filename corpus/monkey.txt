@@ -43,11 +43,5 @@ expression: "Lexer::new(&input).lex_until_eof()"
 ---------------------------
 
 (source_file
-  header: (header
-    (metadata
-      name: (identifier)
-      value: (string))
-    (metadata
-      name: (identifier)
-      value: (string)))
-  body: (body))
+  (header)
+  (body))

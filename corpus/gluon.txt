@@ -15,11 +15,5 @@ error: Could not find module 'undefined'. Searched `.`.
 ---------------------------
 
 (source_file
-  header: (header
-    (metadata
-      name: (identifier)
-      value: (string))
-    (metadata
-      name: (identifier)
-      value: (string)))
-  body: (body))
+  (header)
+  (body))

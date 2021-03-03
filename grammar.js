@@ -3,14 +3,22 @@ module.exports = grammar({
 
     rules: {
         source_file: $ => seq(
-            field('header', $.header),
-            field('body', $.body),
+            $.header,
+            $.body
         ),
 
         header: $ => seq(
             '---',
-            repeat($.metadata),
-            '---',
+            // repeat($.metadata),
+            // token($.body),
+            choice(
+                token(/.*/),
+                '---',
+            ),
+            // token(
+            //     repeat(/.*/)
+            // ),
+            // /[^(---)]*/,
         ),
 
         body: $ => /(.|[\r\n])*/,
@@ -31,7 +39,5 @@ module.exports = grammar({
             /\"[^\"]*\"/,
             /[^\s]+/,
         ),
-
-        path: $ => /\/?[^\/\s]+(?:\/[^\/\s]+)*/,
     }
 })

@@ -5,20 +5,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "header",
-          "content": {
-            "type": "SYMBOL",
-            "name": "header"
-          }
+          "type": "SYMBOL",
+          "name": "header"
         },
         {
-          "type": "FIELD",
-          "name": "body",
-          "content": {
-            "type": "SYMBOL",
-            "name": "body"
-          }
+          "type": "SYMBOL",
+          "name": "body"
         }
       ]
     },
@@ -30,15 +22,20 @@
           "value": "---"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "metadata"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "---"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": ".*"
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "---"
+            }
+          ]
         }
       ]
     },
@@ -96,10 +93,6 @@
           "value": "[^\\s]+"
         }
       ]
-    },
-    "path": {
-      "type": "PATTERN",
-      "value": "\\/?[^\\/\\s]+(?:\\/[^\\/\\s]+)*"
     }
   },
   "extras": [
